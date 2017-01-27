@@ -5,7 +5,3 @@
              ((number? (CAR L)) (+ (CAR L) (sum-up-number-simple (CDR L))))
         )
 )
-
-(DEFINE (helper L)
-
-        )
