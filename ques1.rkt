@@ -2,6 +2,8 @@
         (COND
             ((NULL? L) L)
             ((LIST? (CAR L)) (CONS (reverse-general (CDR L)) (list (reverse-general (CAR L)))))
-            (ELSE CONS (reverse-general (CDR L)) (list (CAR L)))
+            (ELSE (append (reverse-general (CDR L)) (list (CAR L))))
         )
 )
+
+
