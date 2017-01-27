@@ -1,9 +1,15 @@
 (DEFINE (reverse-general L)
         (COND
             ((NULL? L) L)
-            ((LIST? (CAR L)) (CONS (reverse-general (CDR L)) (list (reverse-general (CAR L)))))
+            ((LIST? (CAR L)) (append (reverse-general (CDR L)) (list (reverse-general (CAR L)))))
             (ELSE (append (reverse-general (CDR L)) (list (CAR L))))
         )
 )
 
-
+(reverse-general '())
+(reverse-general '(a b ()))
+(reverse-general '(a b c))
+(reverse-general '((a b c)))
+(reverse-general '((a b c)(d e f)))
+(reverse-general '(a (b c) ((d e) f) g))
+(reverse-general '(1 (2 3) (4 (a (b (c d))))))
