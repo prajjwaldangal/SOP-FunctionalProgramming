@@ -1,23 +1,11 @@
 (DEFINE (reverse-general L)
         (COND
             ((NULL? L) L)
+
+            ; we need append to merge two sets to remove () for each nested list
             ((LIST? (CAR L)) (append (reverse-general (CDR L)) (list (reverse-general (CAR L)))))
+
+            ; same reason as above for using append instead of CONS
             (ELSE (append (reverse-general (CDR L)) (list (CAR L))))
         )
 )
-
-(reverse-general '())
-(reverse-general '(a b ()))
-(reverse-general '(a b c))
-(reverse-general '((a b c)))
-(reverse-general '((a b c)(d e f)))
-(reverse-general '(a (b c) ((d e) f) g))
-(reverse-general '(1 (2 3) (4 (a (b (c d))))))
-
-; ()
-; (() b a)
-; (c b a)
-; ((c b a))
-; ((f e d) (c b a))
-; (g (f (e d)) (c b) a)
-; (((((d c) b) a) 4) (3 2) 1)
