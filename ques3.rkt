@@ -2,31 +2,13 @@
         (COND
             ((NULL? L) 0)
             ((NUMBER? L) L)
+            
+            ; main condition that's likely to be evaluated for most of the cases
             ((LIST? L) (+ (sum-up-numbers-general (CAR L)) (sum-up-numbers-general (CDR L))))
+
+            ; condition for when the atom is a string, like (a)
             (ELSE (sum-up-numbers-general (CDR '(L))))
         )
 )
 
-(sum-up-numbers-general '())
-(sum-up-numbers-general '(() 100 a 200))
-(sum-up-numbers-general '(100))
-(sum-up-numbers-general '(100 200))
-(sum-up-numbers-general '(a))
-(sum-up-numbers-general '(a 100 b 200 c 300 d))
-(sum-up-numbers-general '(()))
-(sum-up-numbers-general '(100))
-(sum-up-numbers-general '(100 (200)))
-(sum-up-numbers-general '(a 100 b (200) c 300 d))
-(sum-up-numbers-general '(a 100 ((b((200)c)) 300 d)))
 
-; 0
-; 300
-; 100
-; 300
-; 0
-; 600
-; 0
-; 100
-; 300
-; 600
-; 600
